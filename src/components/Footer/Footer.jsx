@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import styles from './Footer.module.css'
-// import Image from 'mui-image'
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -33,43 +33,45 @@ function Footer() {
       </Typography>
 
       <span className={styles.companyLogo__container}>
-        <img
-          src="./companyLogo.png"
-          alt="Company Logo"
-          className={styles.companyLogo__image}
-        />
+        <Link to={`https://www.incode-group.com/`}>
+          <img
+            src="./companyLogo.png"
+            alt="Company Logo"
+            className={styles.companyLogo__image}
+          />
+        </Link>
       </span>
 
       <div className={styles.links}>
-        <a
-          href="#"
+        <Link
+          to="https://github.com/Koliras/Rick-and-Morty-front"
           className={styles.links__item}
         >
           <img
             src="./icons/GitHub_icon.svg"
             alt="GitHub"
           />
-        </a>
+        </Link>
 
-        <a
-          href="#"
+        <Link
+          to="#"
           className={styles.links__item}
         >
           <img
             src="./icons/Twitter_icon.svg"
             alt="Twitter"
           />
-        </a>
+        </Link>
 
-        <a
-          href="#"
+        <Link
+          to="#"
           className={styles.links__item}
         >
           <img
             src="./icons/Support_Us_icon.svg"
             alt="Support us"
           />
-        </a>
+        </Link>
       </div>
 
       <div className={styles.year__wrapper}>

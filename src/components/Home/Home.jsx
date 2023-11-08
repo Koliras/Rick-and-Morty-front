@@ -1,14 +1,6 @@
-import { Box } from "@mui/material";
-
 function Home() {
   return (
-    <Box
-      sx={{
-        bgcolor: '#272B33',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
+    <>
       <div className="filtering">
         <button className='filtering__filter'>
           Filter
@@ -43,7 +35,7 @@ function Home() {
       </div>
 
       <div className="fab">...</div>
-    </Box>
+    </>
   )
 }
 

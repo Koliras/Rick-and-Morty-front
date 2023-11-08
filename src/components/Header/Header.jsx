@@ -1,4 +1,5 @@
 import { AppBar, IconButton, Toolbar } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -11,7 +12,9 @@ function Header() {
     >
       <Toolbar variant="dense">
         <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <img src="./logo.svg" alt="logo" />
+          <Link to={`/`}>
+            <img src="./logo.svg" alt="logo" />
+          </Link>
         </IconButton>
       </Toolbar>
     </AppBar>
