@@ -1,12 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <>
-      <header className='header'>
-        <img src='./logo.svg'/>
-      </header>
+      <Header />
 
       <body>
         <h1 className='heading'>The Rick and Morty API</h1>

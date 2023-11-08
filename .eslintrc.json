@@ -19,5 +19,8 @@
         "react"
     ],
     "rules": {
+      "comma-dangle":"warn",
+      "linebreak-style":"warn",
+      "multiline-ternary":"warn"
     }
 }
