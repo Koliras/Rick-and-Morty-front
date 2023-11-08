@@ -1,6 +1,7 @@
-// import logo from './logo.svg';
-import './App.css';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import Heading from './components/Heading/Heading';
+import Home from './components/Home/Home';
 
 function App() {
   return (
@@ -8,47 +9,12 @@ function App() {
       <Header />
 
       <body>
-        <h1 className='heading'>The Rick and Morty API</h1>
+        <Heading />
 
-        <div className='content'>
-          <div className="filtering">
-            <button className='filtering__filter'>
-              Filter
-            </button>
-
-            <div className="filtering__params">
-              <div className="filtering__params__item">
-                Select Item
-              </div>
-
-              <div className="filtering__params__keywords">
-                Add key words to find
-              </div>
-
-              <button className="filtering__params__find">
-                Find
-              </button>
-            </div>
-          </div>
-
-          <div className="cards">
-            <h2>TemporaryContent</h2>
-            <h2>TemporaryContent</h2>
-            <h2>TemporaryContent</h2>
-            <h2>TemporaryContent</h2>
-            <h2>TemporaryContent</h2>
-            <h2>TemporaryContent</h2>
-          </div>
-
-          <div className="pagination">
-            1234
-          </div>
-
-          <div className="fab">...</div>
-        </div>
+        <Home />
       </body>
 
-      <footer>
+      {/* <footer>
         <div className="info">
           Performed as part of a test case for the company
         </div>
@@ -64,7 +30,8 @@ function App() {
         </div>
 
         <div className="year">2023</div>
-      </footer>
+      </footer> */}
+      <Footer />
     </>
   );
 }
