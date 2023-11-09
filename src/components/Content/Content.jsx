@@ -10,6 +10,7 @@ function Content() {
         bgcolor: '#272B33',
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
       <Routes path='/'>
