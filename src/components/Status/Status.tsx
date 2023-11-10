@@ -1,4 +1,4 @@
-import styles from './Status.module.scss'
+import styles from './Status.module.scss';
 import { statusColors } from "../../utils/constants";
 import { Typography } from "@mui/material";
 
