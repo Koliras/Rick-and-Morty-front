@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import Status from "../Status/Status";
 import { Character } from "@/utils/types/Character";
+import { Link } from "react-router-dom";
 
 type Props = {
   character: Character,
@@ -38,17 +39,28 @@ function CharacterCard({ character }: Props) {
           boxSizing: 'border-box',
         }}>
           <Box>
-            <Typography
-              component='div'
-              sx={{
-                fontWeight: 800,
-                fontSize: 27,
-                height: 31,
-                lineHeight: '100%'
-              }}
+            
+              <Typography
+                component='div'
+                sx={{
+                  fontWeight: 800,
+                  fontSize: 27,
+                  minHeight: 31,
+                  lineHeight: '100%',
+                  color: 'white'
+                }}
               >
-              {character.name}
-            </Typography>
+                <Link
+                  to={`./${character.id}`}
+                  style={{
+                    textDecoration: 'none',
+                    color: 'inherit'
+                  }}
+                >
+                {character.name}
+                </Link>
+              </Typography>
+            
 
             <Status status={character.status} species={character.species}/>
           </Box>
