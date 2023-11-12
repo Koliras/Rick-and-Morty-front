@@ -4,19 +4,21 @@ import { useParams } from "react-router-dom";
 import { getCharacter, getEpisode } from 'rickmortyapi';
 import Status from "../Status/Status.tsx";
 import { getFirstSeenEpisodeId } from "../../utils/getFirstSeenEpisodeId.js";
+import { BasicCharacter, Character } from "../../utils/types/Character.ts";
 
-function Character() {
+function CharacterPage() {
   const params = useParams();
-  const [character, setCharacter] = useState({});
+  const characterId = +(useParams().characterId as string);
+  const [character, setCharacter] = useState<Character>(BasicCharacter);
   const [firstSeen, setFirstSeen] = useState('');
   const [noSuchCharater, setNoSuchCharacter] = useState(false);
 
   useEffect(() => {
-    getCharacter(+params.characterId)
+    getCharacter(characterId)
       .then(({ data }) => {
         setNoSuchCharacter(false)
         setCharacter(data);
-        let episodeId = getFirstSeenEpisodeId(data);
+        const episodeId = getFirstSeenEpisodeId(data);
         getEpisode(episodeId).then(({ data }) => setFirstSeen(data.name));
       })
       .catch(() => setNoSuchCharacter(true));
@@ -44,7 +46,7 @@ function Character() {
           maxWidth: 1220,
           bgcolor: '#3C3E44',
           color: '#F5F5F5',
-          mt: '80px',
+          mt: 10,
         }}
       >
         <CardMedia
@@ -135,4 +137,4 @@ function Character() {
     );
 }
 
-export default Character;
+export default CharacterPage;

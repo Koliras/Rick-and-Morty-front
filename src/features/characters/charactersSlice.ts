@@ -5,12 +5,14 @@ import { getCharacters } from "rickmortyapi";
 
 export interface CharactersState {
   characters: Character[];
+  pageAmount: number;
   loading: boolean;
   error: string;
 }
 
 const initialState: CharactersState = {
   characters: [],
+  pageAmount: 0,
   loading: false,
   error: '',
 };
@@ -20,7 +22,10 @@ export const fetchCharacters = createAsyncThunk(
   async (page: number) => {
     const response = await getCharacters({ page });
 
-    return response.data.results;
+    return {
+      results: response.data.results,
+      pages: response.data.info?.pages,
+    };
   }
 )
 
@@ -35,7 +40,8 @@ export const charactersSlice = createSlice({
       })
       .addCase(fetchCharacters.fulfilled, (state, action) => {
         state.loading = false;
-        state.characters = action.payload || [];
+        state.characters = action.payload.results || [];
+        state.pageAmount = action.payload.pages || 0;
       })
       .addCase(fetchCharacters.rejected, (state) => {
         state.loading = false;

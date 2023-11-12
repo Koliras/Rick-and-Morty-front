@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../Home/Home";
-import Character from "../Character/Character";
+import CharacterPage from "../Character/Character";
 import { Box } from "@mui/material";
 
 function Content() {
@@ -16,7 +16,7 @@ function Content() {
     >
       <Routes path='/'>
         <Route index element={<Home />} />
-        <Route path=':characterId' element={<Character />} />
+        <Route path=':characterId' element={<CharacterPage />} />
       </Routes>
     </Box>
   )

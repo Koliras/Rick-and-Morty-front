@@ -18,3 +18,24 @@ export type Character = {
   "url": string,
   "created": Date
 }
+
+export const BasicCharacter: Character = {
+  'id': 0,
+  'name': '',
+  'status': 'unknown',
+  "species": '',
+  "type": '',
+  "gender": 'unknown',
+  "origin": {
+    "name": '',
+    "url": ''
+  },
+  "location": {
+    "name": '',
+    "url": ''
+  },
+  "image": '',
+  "episode": [],
+  "url": '',
+  "created": new Date()
+}
