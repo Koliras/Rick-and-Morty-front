@@ -1,4 +1,5 @@
 import CharacterList from '../CharacterList/CharacterList';
+import PaginationComponent from '../PaginationComponent/PaginationComponent';
 
 function Home() {
   return (
@@ -25,11 +26,9 @@ function Home() {
 
       <CharacterList />
 
-      <div className="pagination">
-        1234
-      </div>
+      <PaginationComponent />
 
-      <div className="fab">...</div>
+      {/* <div className="fab">...</div> */}
     </>
   )
 }

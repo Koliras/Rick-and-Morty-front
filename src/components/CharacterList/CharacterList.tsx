@@ -17,9 +17,10 @@ export default function CharacterList() {
   return (
     <Box
       sx={{
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '28px'
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '28px',
+        mb: 1,
       }}
     >
       {characters.map(char => (
