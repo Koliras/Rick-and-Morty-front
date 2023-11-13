@@ -1,7 +1,8 @@
 import { RootState } from "@/app/store";
 import { Character } from "@/utils/types/Character";
+import { Episode } from "@/utils/types/Episode";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCharacters } from "rickmortyapi";
+import { getCharacters, getEpisode } from "rickmortyapi";
 
 export interface CharactersState {
   characters: Character[];
@@ -21,9 +22,27 @@ export const fetchCharacters = createAsyncThunk(
   'characters/fetchCharacters',
   async (page: number) => {
     const response = await getCharacters({ page });
+    let readyChars = response.data.results;
+    const episodeIds = readyChars?.map(char => {
+      const id = char.episode[0].split('episode/')[1];
+
+      return +id;
+    })
+    const episodeNames = {};
+    if (episodeIds) {
+      ((await getEpisode(episodeIds)).data as Episode[]).map(ep => {
+        episodeNames[ep.url] = ep.name;
+      });
+    }
+    readyChars = readyChars?.map((char) => {
+      return {
+        ...char,
+        firstSeen: episodeNames[char.episode[0]]
+      }
+    });
 
     return {
-      results: response.data.results,
+      results: readyChars,
       pages: response.data.info?.pages,
     };
   }
