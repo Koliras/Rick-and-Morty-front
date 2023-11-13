@@ -32,8 +32,8 @@ function CharacterCard({ character }: Props) {
         }}
       >
         <Box sx={{
-          display: 'grid',
-          gridTemplateRows: 'repeat(3, 1fr)',
+          display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'space-between',
           height: '100%',
           boxSizing: 'border-box',
@@ -93,7 +93,7 @@ function CharacterCard({ character }: Props) {
             </Typography>
 
             <Typography variant="body1" >
-              {/* {firstSeen} */}
+              {character.firstSeen}
             </Typography>
           </Box>
         </Box>

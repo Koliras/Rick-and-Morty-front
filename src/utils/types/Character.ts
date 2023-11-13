@@ -16,7 +16,8 @@ export type Character = {
   "image": string,
   "episode": string[],
   "url": string,
-  "created": Date
+  "created": Date,
+  'firstSeen'?: string,
 }
 
 export const BasicCharacter: Character = {
