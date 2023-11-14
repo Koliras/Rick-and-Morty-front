@@ -37,20 +37,6 @@ export default function PaginationComponent() {
         mt: '26px',
       }}
       renderItem={(item) => {
-        if (item.page === paginationPage) {
-          return (
-            <PaginationItem
-              sx={{
-                color: '#F5F5F5',
-                bgcolor: '#F5F5F5',
-                ":disabled": {
-                  bgcolor: '#9E9E9E'
-                },
-              }}
-              {...item}
-            />
-          )
-        }
         switch (item.type) {
           case 'next':
           case 'previous': {
@@ -75,10 +61,20 @@ export default function PaginationComponent() {
               <PaginationItem
                 sx={{
                   color: '#F5F5F5',
+                  "&.Mui-selected": {
+                    bgcolor: "#F5F5F5",
+                    color: '#3C3E44',
+                    ":hover": {
+                      bgcolor: '#D5D5D5',
+                    }
+                  },
                   bgcolor: '#3C3E44',
                   ":disabled": {
                     bgcolor: '#9E9E9E'
                   },
+                  ":hover": {
+                    bgcolor: '#252525'
+                  }
                 }}
                 {...item}
               />

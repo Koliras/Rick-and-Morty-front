@@ -1,7 +1,9 @@
 import { FilterKey } from '@/utils/types/FilterKey';
 import { FILTER_TEXT_FIELDS } from '../../utils/constants';
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, MenuItem, Select, TextField } from '@mui/material';
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, MenuItem, Select } from '@mui/material';
 import { useState } from 'react';
+import FilterFields from '../FilterField/FilterFields';
+import styles from './Filter.module.css';
 
 export default function Filter() {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -11,6 +13,7 @@ export default function Filter() {
     location: false,
     episodes: false,
   });
+  const noFilter = !isFilterChecked.character && !isFilterChecked.location && !isFilterChecked.episodes;
 
   const handleCheck = (key: FilterKey) => {
     setIsFilterChecked(prev => {
@@ -21,6 +24,10 @@ export default function Filter() {
     })
   }
 
+  const handleClose = () => {
+    setIsItemOpen(false);
+  }
+
   const handleFilterClick = () => {
     setIsFilterVisible(!isFilterVisible);
   }
@@ -28,12 +35,14 @@ export default function Filter() {
   const handleItemOpen = () => {
     setIsItemOpen(true);
   }
+
   return (
     <Box
       sx={{
         color: '#272B33',
         display: 'flex',
         justifyContent: 'flex-start',
+        gap: 20,
         width: 'clamp(600px, 100%, 1228px)',
         py: '22px',
         height: '56px',
@@ -58,8 +67,9 @@ export default function Filter() {
       </Button>
 
       {isFilterVisible && (
-        <form>
+        <form className={styles.form}>
           <FormControl
+            focused={false}
             sx={{
               minWidth: '213px',
               height: '100%',
@@ -67,9 +77,6 @@ export default function Filter() {
           >
             <Select
               value='Select'
-              labelId="demo-controlled-open-select-label"
-              id="demo-controlled-open-select"
-              placeholder='Select Item'
               open={isItemOpen}
               onClick={handleItemOpen}
               sx={{
@@ -112,37 +119,45 @@ export default function Filter() {
               minWidth: '260px',
               height: '100%',
               bgcolor: '#F5F5F5',
-              borderRadius: 2
+              borderRadius: 1,
+              zIndex: 1301
             }}
           >
+            {noFilter && (
+              <MenuItem
+                focusRipple={false}
+                disableRipple={true}
+                sx={{
+                  height: '100%',
+                  ":hover": {
+                    bgcolor: 'inherit',
+                    cursor: 'initial',
+                    borderRadius: 1,
+                  }
+                }}
+              >
+                Add key words to find
+              </MenuItem>
+            )}
             <FormGroup
               sx={{
-                borderRadius: 2,
+                borderRadius: 1,
                 bgcolor: '#F5F5F5'
               }}
             >
-              {isFilterChecked.character && FILTER_TEXT_FIELDS.character.map(field => (
-                <TextField
-                  key={field.id}
-                  label={`Add character ${field.text}`}
-                  variant='filled'
-                  sx={{
-                    zIndex: 19301,
-                    "& .MuiFilledInput-root": {
-                      background: "#F5F5F5",
-                      borderRadius: 1,
-                    }
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
+              {Object.keys(FILTER_TEXT_FIELDS).map((key) => (
+                <FilterFields
+                  key={key}
+                  handleClose={handleClose}
+                  filterKey={key as FilterKey}
+                  checkedFilters={isFilterChecked}
                 />
               ))}
             </FormGroup>
           </FormControl>
 
           <Button
-            onClick={() => setIsItemOpen(false)}
+            onClick={handleClose}
             sx={{
               color: 'inherit',
               bgcolor: '#F5F5F5',

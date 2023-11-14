@@ -5,6 +5,7 @@ import Heading from './components/Heading/Heading';
 import Content from './components/Content/Content';
 import React from 'react';
 import './App.css';
+import FAB from './components/FAB/FAB';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Heading />
 
         <Content />
+
+        <FAB />
       </body>
 
       <Footer />
