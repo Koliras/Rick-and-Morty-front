@@ -6,19 +6,19 @@ export const statusColors = {
 
 export const FILTER_TEXT_FIELDS = {
   character: [
-    { id: 1, text: 'name'},
-    { id: 2, text: 'status'},
-    { id: 3, text: 'species'},
-    { id: 4, text: 'type'},
-    { id: 5, text: 'gender'},
+    { id: 1, value: 'char_name', text: 'name'},
+    { id: 2, value: 'char_status', text: 'status'},
+    { id: 3, value: 'char_species', text: 'species'},
+    { id: 4, value: 'char_type', text: 'type'},
+    { id: 5, value: 'char_gender', text: 'gender'},
   ],
   location: [
-    { id: 1, text: 'name'},
-    { id: 2, text: 'type'},
-    { id: 3, text: 'dimension'},
+    { id: 1, value: 'loc_name', text: 'name'},
+    { id: 2, value: 'loc_type', text: 'type'},
+    { id: 3, value: 'loc_dimension', text: 'dimension'},
   ],
   episodes: [
-    { id: 1, text: 'name'},
-    { id: 2, text: 'codes'},
+    { id: 1, value: 'ep_name', text: 'name'},
+    { id: 2, value: 'ep_codes', text: 'codes'},
   ]
 }
