@@ -4,6 +4,9 @@ import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, MenuIt
 import { useState } from 'react';
 import FilterFields from '../FilterField/FilterFields';
 import styles from './Filter.module.css';
+import { useForm } from "react-hook-form";
+import { resetFilters } from '../../features/characters/charactersSlice';
+import { useAppDispatch } from '../../app/hooks';
 
 export default function Filter() {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -14,6 +17,8 @@ export default function Filter() {
     episodes: false,
   });
   const noFilter = !isFilterChecked.character && !isFilterChecked.location && !isFilterChecked.episodes;
+  const { register, handleSubmit } = useForm();
+  const dispatch = useAppDispatch();
 
   const handleCheck = (key: FilterKey) => {
     setIsFilterChecked(prev => {
@@ -29,11 +34,18 @@ export default function Filter() {
   }
 
   const handleFilterClick = () => {
+    if (isFilterVisible) {
+      dispatch(resetFilters())
+    }
     setIsFilterVisible(!isFilterVisible);
   }
 
   const handleItemOpen = () => {
     setIsItemOpen(true);
+  }
+
+  const onSubmit = () => {
+    return;
   }
 
   return (
@@ -67,7 +79,10 @@ export default function Filter() {
       </Button>
 
       {isFilterVisible && (
-        <form className={styles.form}>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <FormControl
             focused={false}
             sx={{
@@ -100,7 +115,6 @@ export default function Filter() {
                     control={<Checkbox />}
                     label={key}
                     checked={isFilterChecked[key as FilterKey]}
-                    onChange={() => handleCheck(key as FilterKey)}
                     labelPlacement="start"
                     sx={{
                       display: 'flex',
@@ -108,6 +122,9 @@ export default function Filter() {
                       justifyContent: 'space-between',
                       textTransform: 'capitalize',
                     }}
+                    {...register(`${key}`, {
+                      onChange: () => handleCheck(key as FilterKey)
+                    })}
                   />
                 ))}
               </FormGroup>

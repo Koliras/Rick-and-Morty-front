@@ -1,18 +1,22 @@
 import { Box } from "@mui/material";
 import CharacterCard from "../CharacterCard/CharacterCard";
-import { fetchCharacters, selectCharacters } from "../../features/characters/charactersSlice";
+import { fetchCharacters, fetchFilteredCharacters } from "../../features/characters/charactersSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function CharacterList() {
-  const characters = useAppSelector(selectCharacters);
+  const { characters, filteredCharIds } = useAppSelector(state => state.characters);
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get('page')) || 1;
 
   useEffect(() => {
-    dispatch(fetchCharacters(page));
+    if (filteredCharIds.length) {
+      dispatch(fetchFilteredCharacters({ page, ids: filteredCharIds }))
+    } else {
+      dispatch(fetchCharacters(page));
+    }
   }, [searchParams])
   return (
     <Box

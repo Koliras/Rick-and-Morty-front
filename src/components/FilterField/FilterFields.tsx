@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import { FILTER_TEXT_FIELDS } from "../../utils/constants";
 import { FilterKey } from "../../utils/types/FilterKey";
 import { TextField } from '@mui/material'
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export default function FilterFields({ handleClose, filterKey, checkedFilters, }: Props) {
+  const { register } = useForm();
   return (
     <>
       {checkedFilters[filterKey] && FILTER_TEXT_FIELDS[filterKey].map(field => (
@@ -31,6 +33,7 @@ export default function FilterFields({ handleClose, filterKey, checkedFilters, }
           InputProps={{
             disableUnderline: true,
           }}
+          {...register(field.value)}
         />
       ))}
     </>
