@@ -1,12 +1,23 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+// import counterReducer from '../features/counter/counterSlice';
 import charactersReducer from '../features/characters/charactersSlice';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
+import { combineReducers } from '@reduxjs/toolkit';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const reducer = combineReducers({
+  characters: charactersReducer,
+})
+
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    characters: charactersReducer,
-  },
+  reducer: persistedReducer,
 });
 
 export type AppDispatch = typeof store.dispatch;
