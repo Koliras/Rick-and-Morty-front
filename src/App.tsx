@@ -6,6 +6,7 @@ import Content from './components/Content/Content';
 import React from 'react';
 import './App.css';
 import FAB from './components/FAB/FAB';
+import { Box } from '@mui/material';
 
 function App() {
   return (
@@ -13,13 +14,13 @@ function App() {
       <HashRouter>
       <Header />
 
-      <body>
+      <Box>
         <Heading />
 
         <Content />
 
         <FAB />
-      </body>
+      </Box>
 
       <Footer />
       </HashRouter>

@@ -19,6 +19,22 @@ export const FILTER_TEXT_FIELDS = {
   ],
   episodes: [
     { id: 1, value: 'ep_name', text: 'name'},
-    { id: 2, value: 'ep_codes', text: 'codes'},
+    { id: 2, value: 'ep_code', text: 'codes'},
   ]
+}
+
+export const DEFAULT_FORM_VALUES = {
+  'character': false,
+  'location': false,
+  'episodes': false,
+  'char_name': '',
+  'char_status': '',
+  'char_species': '',
+  'char_type': '',
+  'char_gender': '',
+  'loc_name': '',
+  'loc_type': '',
+  'loc_dimension': '',
+  'ep_name': '',
+  'ep_code': '',
 }

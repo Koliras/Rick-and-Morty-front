@@ -21,6 +21,7 @@ export default function FilterFields({ handleClose, filterKey, checkedFilters, }
         <TextField
           key={field.id}
           onClick={handleClose}
+          {...register(field.value)}
           label={`Add ${filterKey} ${field.text}`}
           variant='filled'
           sx={{
@@ -33,7 +34,6 @@ export default function FilterFields({ handleClose, filterKey, checkedFilters, }
           InputProps={{
             disableUnderline: true,
           }}
-          {...register(field.value)}
         />
       ))}
     </>
