@@ -20,29 +20,31 @@ export default function CharacterList() {
 
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [searchParams]);
-  return characters.length !== 0 ? (
-    <Box
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '28px',
-        mb: 1,
-      }}
-    >
-      {characters.map((char) => (
-        <CharacterCard character={char} key={char.id} />
-      ))}
-    </Box>
-  ) : (
-    <Typography
-      variant='h4'
-      sx={{
-        color: '#F5F5F5',
-        fontWeight: 600,
-        p: 3,
-      }}
-    >
-      It seems, no character matches the parameters
-    </Typography>
-  );
+  return characters.length !== 0
+    ? (
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '28px',
+          mb: 1,
+        }}
+      >
+        {characters.map((char) => (
+          <CharacterCard character={char} key={char.id} />
+        ))}
+      </Box>
+    )
+    : (
+      <Typography
+        variant='h4'
+        sx={{
+          color: '#F5F5F5',
+          fontWeight: 600,
+          p: 3,
+        }}
+      >
+        It seems, no character matches the parameters
+      </Typography>
+    );
 }

@@ -16,6 +16,7 @@ import styles from './Filter.module.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   fetchCharacters,
+  resetFilters,
   setFilters,
 } from '../../features/characters/charactersSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -62,6 +63,7 @@ export default function Filter() {
   const handleFilterClick = () => {
     if (isFilterVisible) {
       dispatch(fetchCharacters({}));
+      dispatch(resetFilters());
       setSearchParams((searchParams: URLSearchParams) => {
         return {
           ...searchParams,

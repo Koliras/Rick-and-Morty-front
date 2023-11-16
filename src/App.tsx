@@ -4,7 +4,6 @@ import Header from './components/Header/Header';
 import Heading from './components/Heading/Heading';
 import Content from './components/Content/Content';
 import React from 'react';
-import './App.css';
 import FAB from './components/FAB/FAB';
 import { Box } from '@mui/material';
 
