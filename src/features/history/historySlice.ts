@@ -1,14 +1,14 @@
-import { HistoryElement, HistoryElementType } from "../../utils/types/History"
-import { createSlice } from "@reduxjs/toolkit"
-import { setFilters } from "../characters/charactersSlice"
+import { HistoryElement, HistoryElementType } from '../../utils/types/History';
+import { createSlice } from '@reduxjs/toolkit';
+import { setFilters } from '../characters/charactersSlice';
 
 export interface HistoryState {
-  history: HistoryElement[]
+  history: HistoryElement[];
 }
 
 const initialState: HistoryState = {
   history: [],
-}
+};
 
 export const historySlice = createSlice({
   name: 'history',
@@ -26,9 +26,8 @@ export const historySlice = createSlice({
         id: Date.now(),
       });
     });
-  }
-})
-
+  },
+});
 
 export const { update } = historySlice.actions;
 

@@ -11,7 +11,7 @@ function Home() {
 
       <PaginationComponent />
     </>
-  )
+  );
 }
 
 export default Home;

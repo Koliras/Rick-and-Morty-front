@@ -1,9 +1,9 @@
-import { useAppSelector } from "../../app/hooks";
-import { List } from "@mui/material";
-import { HistoryListItem } from "../HistoryListItem/HistoryListItem";
+import { useAppSelector } from '../../app/hooks';
+import { List } from '@mui/material';
+import { HistoryListItem } from '../HistoryListItem/HistoryListItem';
 
 export function HistoryList() {
-  const { history } = useAppSelector(state => state.history);
+  const { history } = useAppSelector((state) => state.history);
   return (
     <List
       sx={{
@@ -13,12 +13,9 @@ export function HistoryList() {
         maxHeight: '500px',
       }}
     >
-      {history.map(element => (
-        <HistoryListItem
-          key={element.id}
-          item={element}
-        />
+      {history.map((element) => (
+        <HistoryListItem key={element.id} item={element} />
       ))}
     </List>
-  )
+  );
 }

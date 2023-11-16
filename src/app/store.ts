@@ -8,12 +8,12 @@ import { combineReducers } from '@reduxjs/toolkit';
 const persistConfig = {
   key: 'root',
   storage,
-}
+};
 
 const reducer = combineReducers({
   characters: charactersReducer,
   history: historyReducer,
-})
+});
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 

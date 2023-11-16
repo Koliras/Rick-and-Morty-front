@@ -18,6 +18,11 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/react-app.d.ts", "**/*.ts", "**/*.tsx", "src/utils/types/**/*.ts"],
+  "include": [
+    "src/react-app.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/utils/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }

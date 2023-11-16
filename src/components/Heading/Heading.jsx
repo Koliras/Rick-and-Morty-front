@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography } from '@mui/material';
 
 function Heading() {
   return (
@@ -11,9 +11,9 @@ function Heading() {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundImage: `url(./background.svg)`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat"
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       The Rick and Morty API

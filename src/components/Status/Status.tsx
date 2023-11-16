@@ -1,32 +1,41 @@
-import styles from './Status.module.scss';
-import { statusColors } from "../../utils/constants";
-import { Typography } from "@mui/material";
+import { statusColors } from '../../utils/constants';
+import { Typography, Box } from '@mui/material';
 
 type Props = {
-  status: 'unknown' | 'Alive' | 'Dead',
-  species: string,
-}
+  status: 'unknown' | 'Alive' | 'Dead';
+  species: string;
+};
 
 function Status({ status, species }: Props) {
   return (
     <Typography
-      variant="body2"
+      variant='body2'
       sx={{
-        lineHeight: '26px'
+        lineHeight: '26px',
       }}
     >
-      <span
-        className={styles.status__dot}
-        style={{
+      <Box
+        component='span'
+        sx={{
+          width: '9px',
+          height: '9px',
+          borderRadius: '50%',
+          display: 'inline-block',
+          marginRight: '7px',
           backgroundColor: statusColors[status],
         }}
       />
 
-      <span className={styles.status}>
+      <Typography
+        component='span'
+        sx={{
+          textTransform: 'capitalize',
+        }}
+      >
         {`${status} - ${species}`}
-      </span>
+      </Typography>
     </Typography>
-  )
+  );
 }
 
 export default Status;

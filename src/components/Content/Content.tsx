@@ -1,7 +1,7 @@
-import { Route, Routes } from "react-router-dom";
-import Home from "../Home/Home";
-import CharacterPage from "../Character/Character";
-import { Box } from "@mui/material";
+import { Route, Routes } from 'react-router-dom';
+import Home from '../Home/Home';
+import CharacterPage from '../Character/Character';
+import { Box } from '@mui/material';
 
 function Content() {
   return (
@@ -18,7 +18,7 @@ function Content() {
         <Route path=':characterId' element={<CharacterPage />} />
       </Routes>
     </Box>
-  )
+  );
 }
 
 export default Content;

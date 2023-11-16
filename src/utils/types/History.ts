@@ -1,4 +1,4 @@
-import { FormInput } from "./FormInput"
+import { FormInput } from './FormInput';
 
 export enum HistoryElementType {
   VISIT = 'visit',
@@ -6,7 +6,7 @@ export enum HistoryElementType {
 }
 
 export type HistoryElement = {
-  id: number,
-  type: HistoryElementType,
-  content?: string | FormInput,
-}
+  id: number;
+  type: HistoryElementType;
+  content?: string | FormInput;
+};

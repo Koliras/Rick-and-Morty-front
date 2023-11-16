@@ -4,9 +4,15 @@
     height: 50px;
     margin: 16px;
     margin-bottom: 66px;
-    box-shadow: 0px 0px 200px 20px rgba(255,255,255,0.14) inset, 0px 0px 200px 20px rgba(255,255,255,0.4);
-    -webkit-box-shadow: 0px 0px 200px 200px rgba(255,255,255,0.14) inset, 0px 0px 100px 20px rgba(255,255,255,0.4);
-    -moz-box-shadow: 0px 0px 200px 20px rgba(255,255,255,0.14) inset, 0px 0px 200px 20px rgba(255,255,255,0.4);
+    box-shadow:
+      0px 0px 200px 20px rgba(255, 255, 255, 0.14) inset,
+      0px 0px 200px 20px rgba(255, 255, 255, 0.4);
+    -webkit-box-shadow:
+      0px 0px 200px 200px rgba(255, 255, 255, 0.14) inset,
+      0px 0px 100px 20px rgba(255, 255, 255, 0.4);
+    -moz-box-shadow:
+      0px 0px 200px 20px rgba(255, 255, 255, 0.14) inset,
+      0px 0px 200px 20px rgba(255, 255, 255, 0.4);
   }
 
   &__image {
