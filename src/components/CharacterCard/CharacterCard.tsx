@@ -41,12 +41,17 @@ function CharacterCard({ character }: Props) {
         color: '#F5F5F5',
       }}
     >
-      <CardMedia
-        component='img'
-        image={`${character.image}`}
-        alt={`Image of ${character.name}`}
-        height='100%'
-      />
+      <Link
+        to={`./${character.id}`}
+        onClick={handleLinkClick}
+      >
+        <CardMedia
+          component='img'
+          image={`${character.image}`}
+          alt={`Image of ${character.name}`}
+          height='100%'
+        />
+      </Link>
 
       <CardContent
         sx={{

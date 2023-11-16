@@ -57,7 +57,9 @@ export default function FAB() {
         boxSizing: 'border-box',
       }}
     >
-      {isButtonsVisible ? <CloseIcon /> : <MoreVertIcon />}
+      {isButtonsVisible
+        ? <CloseIcon />
+        : <MoreVertIcon />}
 
       {isButtonsVisible && (
         <>
@@ -103,6 +105,7 @@ export default function FAB() {
       <Drawer
         anchor='right'
         open={isDrawerOpen}
+        onClose={toggleDrawer(false)}
         sx={{
           zIndex: 1400,
         }}

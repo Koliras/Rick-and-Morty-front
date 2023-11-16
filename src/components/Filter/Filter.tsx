@@ -60,6 +60,16 @@ export default function Filter() {
     setIsItemOpen(false);
   };
 
+  const handleBackdropClick = () => { 
+    setIsItemOpen(false);
+    setIsBackDark(false);
+    setIsFilterChecked({
+      character: false,
+      location: false,
+      episodes: false,
+    })
+  }
+
   const handleFilterClick = () => {
     if (isFilterVisible) {
       dispatch(fetchCharacters({}));
@@ -127,7 +137,7 @@ export default function Filter() {
 
       {isBackDark && (
         <Box
-          onClick={() => setIsItemOpen(false)}
+          onClick={() => handleBackdropClick()}
           sx={{
             position: 'fixed',
             bgcolor: 'rgba(0, 0, 0, 0.8)',
