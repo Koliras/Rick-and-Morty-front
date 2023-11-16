@@ -1,10 +1,10 @@
-import { useAppSelector } from "../../app/hooks";
-import { Pagination, PaginationItem } from "@mui/material"
+import { useAppSelector } from '../../app/hooks';
+import { Pagination, PaginationItem } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
 
 export default function PaginationComponent() {
-  const { pageAmount } = useAppSelector(state => state.characters);
+  const { pageAmount } = useAppSelector((state) => state.characters);
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page')) || 1;
   const [paginationPage, setPaginationPage] = useState(page);
@@ -18,13 +18,13 @@ export default function PaginationComponent() {
       return {
         ...searchParams,
         page: paginationPage,
-      }
-    })
-  }, [paginationPage])
+      };
+    });
+  }, [paginationPage]);
 
   useEffect(() => {
     setPaginationPage(page);
-  }, [page])
+  }, [page]);
   return (
     <Pagination
       count={pageAmount}
@@ -45,43 +45,43 @@ export default function PaginationComponent() {
                 sx={{
                   color: '#3C3E44',
                   bgcolor: '#F5F5F5',
-                  ":disabled": {
-                    bgcolor: '#9E9E9E'
+                  ':disabled': {
+                    bgcolor: '#9E9E9E',
                   },
                   ':hover': {
                     bgcolor: '#D5D5D5',
-                  }
+                  },
                 }}
                 {...item}
               />
-            )
+            );
           }
           default: {
-            return  (
+            return (
               <PaginationItem
                 sx={{
                   color: '#F5F5F5',
-                  "&.Mui-selected": {
-                    bgcolor: "#F5F5F5",
+                  '&.Mui-selected': {
+                    bgcolor: '#F5F5F5',
                     color: '#3C3E44',
-                    ":hover": {
+                    ':hover': {
                       bgcolor: '#D5D5D5',
-                    }
+                    },
                   },
                   bgcolor: '#3C3E44',
-                  ":disabled": {
-                    bgcolor: '#9E9E9E'
+                  ':disabled': {
+                    bgcolor: '#9E9E9E',
                   },
-                  ":hover": {
-                    bgcolor: '#252525'
-                  }
+                  ':hover': {
+                    bgcolor: '#252525',
+                  },
                 }}
                 {...item}
               />
-            )
+            );
           }
         }
       }}
     />
-  )
+  );
 }

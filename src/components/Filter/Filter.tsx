@@ -1,17 +1,34 @@
 import { FilterKey } from '@/utils/types/FilterKey';
 import { DEFAULT_FORM_VALUES, FILTER_TEXT_FIELDS } from '../../utils/constants';
-import { Box, Button, Checkbox, FormControl, TextField, FormControlLabel, FormGroup, MenuItem, Select } from '@mui/material';
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  TextField,
+  FormControlLabel,
+  FormGroup,
+  MenuItem,
+  Select,
+} from '@mui/material';
 import { useState } from 'react';
 import styles from './Filter.module.css';
-import { useForm, SubmitHandler } from "react-hook-form";
-import { fetchCharacters, resetFilters, setFilters } from '../../features/characters/charactersSlice';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import {
+  fetchCharacters,
+  setFilters,
+} from '../../features/characters/charactersSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { FormInput } from '../../utils/types/FormInput';
 import { useSearchParams } from 'react-router-dom';
 
 export default function Filter() {
-  const { currentFilters } = useAppSelector(state => state.characters);
-  const [isFilterVisible, setIsFilterVisible] = useState(currentFilters.character || currentFilters.location || currentFilters.episodes);
+  const { currentFilters } = useAppSelector((state) => state.characters);
+  const [isFilterVisible, setIsFilterVisible] = useState(
+    currentFilters.character ||
+      currentFilters.location ||
+      currentFilters.episodes,
+  );
   const [isItemOpen, setIsItemOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isBackDark, setIsBackDark] = useState(false);
@@ -20,43 +37,45 @@ export default function Filter() {
     location: false,
     episodes: false,
   });
-  const noFilter = !isFilterChecked.character && !isFilterChecked.location && !isFilterChecked.episodes;
+  const noFilter =
+    !isFilterChecked.character &&
+    !isFilterChecked.location &&
+    !isFilterChecked.episodes;
   const { register, handleSubmit } = useForm({
     defaultValues: DEFAULT_FORM_VALUES,
   });
   const dispatch = useAppDispatch();
 
   const handleCheck = (key: FilterKey) => {
-    setIsFilterChecked(prev => {
+    setIsFilterChecked((prev) => {
       return {
         ...prev,
         [key]: !prev[key],
-      }
-    })
-  }
+      };
+    });
+  };
 
   const handleClose = () => {
     setIsItemOpen(false);
-  }
+  };
 
   const handleFilterClick = () => {
     if (isFilterVisible) {
-      dispatch(resetFilters())
-      dispatch(fetchCharacters({}))
+      dispatch(fetchCharacters({}));
       setSearchParams((searchParams: URLSearchParams) => {
         return {
           ...searchParams,
           page: 1,
-        }
-      })
+        };
+      });
     }
     setIsFilterVisible(!isFilterVisible);
-  }
+  };
 
   const handleItemOpen = () => {
     setIsItemOpen(true);
     setIsBackDark(true);
-  }
+  };
 
   const onSubmit: SubmitHandler<FormInput> = (filters) => {
     dispatch(fetchCharacters({ page: 1, filters }));
@@ -67,14 +86,14 @@ export default function Filter() {
       return {
         ...searchParams,
         page: 1,
-      }
+      };
     });
     setIsFilterChecked({
       character: false,
       location: false,
       episodes: false,
-    })
-  }
+    });
+  };
 
   return (
     <Box
@@ -96,14 +115,12 @@ export default function Filter() {
           textTransform: 'uppercase',
           width: '143px',
           height: '57px',
-          ":hover": {
-            bgcolor: '#D5D5D5'
-          }
+          ':hover': {
+            bgcolor: '#D5D5D5',
+          },
         }}
       >
-        {isFilterVisible
-          ? 'Remove filter'
-          : 'Filter'}
+        {isFilterVisible ? 'Remove filter' : 'Filter'}
       </Button>
 
       {isBackDark && (
@@ -116,16 +133,13 @@ export default function Filter() {
             height: '100%',
             top: 0,
             left: 0,
-            zIndex: 1300
+            zIndex: 1300,
           }}
         />
       )}
 
       {isFilterVisible && (
-        <form
-          className={styles.form}
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <FormControl
             focused={false}
             sx={{
@@ -143,9 +157,9 @@ export default function Filter() {
               }}
             >
               <MenuItem
-                value="Select"
+                value='Select'
                 sx={{
-                  display: 'none'
+                  display: 'none',
                 }}
               >
                 Select Item
@@ -159,7 +173,7 @@ export default function Filter() {
                     control={<Checkbox />}
                     label={key}
                     checked={isFilterChecked[key as FilterKey]}
-                    labelPlacement="start"
+                    labelPlacement='start'
                     sx={{
                       display: 'flex',
                       pr: 2,
@@ -167,7 +181,7 @@ export default function Filter() {
                       textTransform: 'capitalize',
                     }}
                     {...register(`${key}`, {
-                      onChange: () => handleCheck(key as FilterKey)
+                      onChange: () => handleCheck(key as FilterKey),
                     })}
                   />
                 ))}
@@ -182,7 +196,7 @@ export default function Filter() {
               height: '100%',
               bgcolor: '#F5F5F5',
               borderRadius: 1,
-              zIndex: 1301
+              zIndex: 1301,
             }}
           >
             {noFilter && (
@@ -191,11 +205,11 @@ export default function Filter() {
                 disableRipple={true}
                 sx={{
                   height: '100%',
-                  ":hover": {
+                  ':hover': {
                     bgcolor: 'inherit',
                     cursor: 'initial',
                     borderRadius: 1,
-                  }
+                  },
                 }}
               >
                 Add key words to find
@@ -204,65 +218,31 @@ export default function Filter() {
             <FormGroup
               sx={{
                 borderRadius: 1,
-                bgcolor: '#F5F5F5'
+                bgcolor: '#F5F5F5',
               }}
             >
-              {isFilterChecked.character && FILTER_TEXT_FIELDS.character.map(field => (
-                <TextField
-                  key={field.id}
-                  // onClick={handleClose}
-                  {...register(field.value)}
-                  label={`Add character ${field.text}`}
-                  variant='filled'
-                  sx={{
-                    zIndex: 1300,
-                    "& .MuiFilledInput-root": {
-                      background: "#F5F5F5",
-                      borderRadius: 1,
-                    }
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                />
-              ))}
-              {isFilterChecked.location && FILTER_TEXT_FIELDS.location.map(field => (
-                <TextField
-                  key={field.id}
-                  onClick={handleClose}
-                  {...register(field.value)}
-                  label={`Add location ${field.text}`}
-                  variant='filled'
-                  sx={{
-                    zIndex: 13000,
-                    "& .MuiFilledInput-root": {
-                      background: "#F5F5F5",
-                      borderRadius: 1,
-                    }
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                />
-              ))}
-              {isFilterChecked.episodes && FILTER_TEXT_FIELDS.episodes.map(field => (
-                <TextField
-                  key={field.id}
-                  onClick={handleClose}
-                  {...register(field.value)}
-                  label={`Add episodes ${field.text}`}
-                  variant='filled'
-                  sx={{
-                    zIndex: 13000,
-                    "& .MuiFilledInput-root": {
-                      background: "#F5F5F5",
-                      borderRadius: 1,
-                    }
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                />
+              {Object.keys(FILTER_TEXT_FIELDS).map((filter) => (
+                <>
+                  {isFilterChecked[filter] &&
+                    FILTER_TEXT_FIELDS[filter].map((field) => (
+                      <TextField
+                        key={field.id}
+                        {...register(field.value)}
+                        label={`Add ${filter} ${field.text}`}
+                        variant='filled'
+                        sx={{
+                          zIndex: 1300,
+                          '& .MuiFilledInput-root': {
+                            background: '#F5F5F5',
+                            borderRadius: 1,
+                          },
+                        }}
+                        InputProps={{
+                          disableUnderline: true,
+                        }}
+                      />
+                    ))}
+                </>
               ))}
             </FormGroup>
           </FormControl>
@@ -276,9 +256,9 @@ export default function Filter() {
               width: '143px',
               height: '57px',
               zIndex: 1301,
-              ":hover": {
+              ':hover': {
                 bgcolor: '#D5D5D5',
-              }
+              },
             }}
           >
             Find
@@ -286,5 +266,5 @@ export default function Filter() {
         </form>
       )}
     </Box>
-  )
+  );
 }

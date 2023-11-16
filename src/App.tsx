@@ -12,17 +12,17 @@ function App() {
   return (
     <React.Fragment>
       <HashRouter>
-      <Header />
+        <Header />
 
-      <Box>
-        <Heading />
+        <Box>
+          <Heading />
 
-        <Content />
+          <Content />
 
-        <FAB />
-      </Box>
+          <FAB />
+        </Box>
 
-      <Footer />
+        <Footer />
       </HashRouter>
     </React.Fragment>
   );
