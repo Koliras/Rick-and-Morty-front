@@ -4,7 +4,7 @@ import { Box, Button, Checkbox, FormControl, TextField, FormControlLabel, FormGr
 import { useState } from 'react';
 import styles from './Filter.module.css';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { fetchCharacters, resetFilters, setFilters } from '../../features/characters/charactersSlice';
+import { fetchCharacters, setFilters } from '../../features/characters/charactersSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { FormInput } from '../../utils/types/FormInput';
 import { useSearchParams } from 'react-router-dom';
@@ -41,7 +41,6 @@ export default function Filter() {
 
   const handleFilterClick = () => {
     if (isFilterVisible) {
-      dispatch(resetFilters())
       dispatch(fetchCharacters({}))
       setSearchParams((searchParams: URLSearchParams) => {
         return {
@@ -207,62 +206,27 @@ export default function Filter() {
                 bgcolor: '#F5F5F5'
               }}
             >
-              {isFilterChecked.character && FILTER_TEXT_FIELDS.character.map(field => (
-                <TextField
-                  key={field.id}
-                  // onClick={handleClose}
-                  {...register(field.value)}
-                  label={`Add character ${field.text}`}
-                  variant='filled'
-                  sx={{
-                    zIndex: 1300,
-                    "& .MuiFilledInput-root": {
-                      background: "#F5F5F5",
-                      borderRadius: 1,
-                    }
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                />
-              ))}
-              {isFilterChecked.location && FILTER_TEXT_FIELDS.location.map(field => (
-                <TextField
-                  key={field.id}
-                  onClick={handleClose}
-                  {...register(field.value)}
-                  label={`Add location ${field.text}`}
-                  variant='filled'
-                  sx={{
-                    zIndex: 13000,
-                    "& .MuiFilledInput-root": {
-                      background: "#F5F5F5",
-                      borderRadius: 1,
-                    }
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                />
-              ))}
-              {isFilterChecked.episodes && FILTER_TEXT_FIELDS.episodes.map(field => (
-                <TextField
-                  key={field.id}
-                  onClick={handleClose}
-                  {...register(field.value)}
-                  label={`Add episodes ${field.text}`}
-                  variant='filled'
-                  sx={{
-                    zIndex: 13000,
-                    "& .MuiFilledInput-root": {
-                      background: "#F5F5F5",
-                      borderRadius: 1,
-                    }
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                />
+              {Object.keys(FILTER_TEXT_FIELDS).map(filter => (
+                <>
+                  {isFilterChecked[filter] && FILTER_TEXT_FIELDS[filter].map(field => (
+                    <TextField
+                      key={field.id}
+                      {...register(field.value)}
+                      label={`Add ${filter} ${field.text}`}
+                      variant='filled'
+                      sx={{
+                        zIndex: 1300,
+                        "& .MuiFilledInput-root": {
+                          background: "#F5F5F5",
+                          borderRadius: 1,
+                        }
+                      }}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                  ))}
+                </>
               ))}
             </FormGroup>
           </FormControl>

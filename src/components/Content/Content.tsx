@@ -11,7 +11,6 @@ function Content() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        minHeight: 900
       }}
     >
       <Routes path='/'>

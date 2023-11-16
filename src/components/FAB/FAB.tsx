@@ -1,4 +1,4 @@
-import { Fab } from "@mui/material";
+import { Fab, Drawer, Button, Box, Typography } from "@mui/material";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CloseIcon from '@mui/icons-material/Close';
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
@@ -8,17 +8,31 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { selectCharacters } from "../../features/characters/charactersSlice";
 import { CSVLink } from "react-csv";
+import { HistoryList } from "../HistoryList/HistoryList";
 
 export default function FAB() {
   const [isButtonsVisible, setIsButtonsVisible] = useState(false);
   const location = useLocation();
   const characters = useAppSelector(selectCharacters);
   const [searchParams] = useSearchParams();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const page = searchParams.get('page');
 
   const handleClick = () => {
     setIsButtonsVisible(!isButtonsVisible);
   }
+
+  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
+
+      setIsDrawerOpen(open);
+    };
 
   const headers = [
     { label: 'Name', key: 'name'},
@@ -50,6 +64,7 @@ export default function FAB() {
         <>
           <Fab
             size="small"
+            onClick={toggleDrawer(true)}
             sx={{
               bgcolor: '#F5F5F5',
               position: 'absolute',
@@ -86,6 +101,51 @@ export default function FAB() {
           </Fab>
         </>
       )}
+
+      <Drawer
+        anchor="right"
+        open={isDrawerOpen}
+        sx={{
+          zIndex: 1400,
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            p: 2,
+            height: '100%',
+            width: '420px',
+            boxSizing: 'border-box',
+          }}
+        >
+          <Box>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 500,
+                color: '#272B33'
+              }}
+            >
+              History
+            </Typography>
+            <HistoryList />
+          </Box>
+          <Button
+            onClick={toggleDrawer(false)}
+            sx={{
+              textAlign: "left",
+              display: 'inline-block',
+              width: 'fit-content',
+              color: '#272B33',
+              fontWeight: 500,
+            }}
+          >
+            Close
+          </Button>
+        </Box>
+      </Drawer>
     </Fab>
   )
 }

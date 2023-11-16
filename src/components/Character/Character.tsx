@@ -22,6 +22,8 @@ function CharacterPage() {
         getEpisode(episodeId).then(({ data }) => setFirstSeen(data.name));
       })
       .catch(() => setNoSuchCharacter(true));
+
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   }, [params]);
 
   return noSuchCharater

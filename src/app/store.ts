@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-// import counterReducer from '../features/counter/counterSlice';
 import charactersReducer from '../features/characters/charactersSlice';
+import historyReducer from '../features/history/historySlice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
@@ -12,6 +12,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
   characters: charactersReducer,
+  history: historyReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer);

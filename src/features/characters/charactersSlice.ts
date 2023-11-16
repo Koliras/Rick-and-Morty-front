@@ -59,68 +59,6 @@ export const fetchCharacters = createAsyncThunk(
   }
 )
 
-// export const fetchCharactersWithFilters = createAsyncThunk(
-//   'characters/fetchCharactersWithFilters',
-//   async ({ filters, page }: { filters: FormInput, page: number }) => {
-//     // const episodes = filters.episodes
-//     //   ? (await getEpisodes({
-//     //     episode: filters.ep_code,
-//     //     name: filters.ep_name
-//     //   })).data.results
-//     //   : [];
-
-//     // const charsFromEpisodeUrls = new Set(episodes?.map((ep) => {
-//     //   return ep.characters
-//     // }).flat());
-
-//     // const locations = filters.location
-//     //   ? (await getLocations({
-//     //     name: filters.loc_name,
-//     //     type: filters.loc_type,
-//     //     dimension: filters.loc_dimension,
-//     //   })).data.results
-//     //   : [];
-
-//     // const charsFromLocationUrls = new Set(locations?.map((loc) => {
-//     //   return loc.residents;
-//     // }).flat());
-
-//     // const uniqueUrls; = new Set([...charsFromEpisodeUrls, ...charsFromLocationUrls])
-//     // let uniqueUrls;
-
-//     // if (filters.episodes && filters.location) {
-//     //   uniqueUrls = charsFromEpisodeUrls.intersection(charsFromLocationUrls);
-//     // } else if (filters.character) {
-//     //   uniqueUrls = charsFromEpisodeUrls
-//     // }
-
-//     // const charFromEpAndLocIds = [...uniqueUrls].map(url => +url.split('character/')[1]);
-
-//     const characterResponse = (await getCharacters({
-//         page,
-//         name: filters.char_name,
-//         gender: filters.char_gender,
-//         status: filters.char_status,
-//         species: filters.char_species,
-//         type: filters.char_type,
-//       })).data
-
-      
-//     // const filteredIds = charIds
-//     //   ? [...charIds, ...charFromEpAndLocIds]
-//     //   : charFromEpAndLocIds;
-
-//     // const resultChars = (await getCharacter(filteredIds)).data;
-//     const resultChars = characterResponse.results || [];
-//     const pages = characterResponse.info?.pages || 0;
-
-//     return {
-//       resultChars,
-//       pages,
-//     };
-//   }
-// )
-
 export const charactersSlice = createSlice({
   name: 'characters',
   initialState,

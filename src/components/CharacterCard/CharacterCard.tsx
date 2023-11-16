@@ -2,12 +2,24 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import Status from "../Status/Status";
 import { Character } from "@/utils/types/Character";
 import { Link } from "react-router-dom";
+import { HistoryElementType } from "../../utils/types/History.ts";
+import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
+import { update } from "../../features/history/historySlice.ts";
 
 type Props = {
   character: Character,
 }
 
 function CharacterCard({ character }: Props) {
+  const dispatch = useAppDispatch();
+  const { history } = useAppSelector(state => state.history);
+  
+  const handleLinkClick = () => {
+    if (history.length === 0 || history[0].type !== HistoryElementType.VISIT || history[0].content !== character.name) {
+      dispatch(update({ type: HistoryElementType.VISIT, content: character.name, id: Date.now()}));
+    }
+  }
+
   return(
     <Card
       sx={{
@@ -52,6 +64,7 @@ function CharacterCard({ character }: Props) {
               >
                 <Link
                   to={`./${character.id}`}
+                  onClick={handleLinkClick}
                   style={{
                     textDecoration: 'none',
                     color: 'inherit'

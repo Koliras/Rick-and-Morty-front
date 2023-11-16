@@ -10,8 +10,6 @@ function Home() {
       <CharacterList />
 
       <PaginationComponent />
-
-      {/* <div className="fab">...</div> */}
     </>
   )
 }
